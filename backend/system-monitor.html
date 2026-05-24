@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./css/system-monitor.css">
+  <title>Real-Time CPU Monitor — OS Lab</title>
+</head>
+
+<body>
+
+  <nav style="background-color: #151D3B;" class="navStyle">
+    <a href="../index.html" style="color: #fff;">OS LAB</a>
+    <div class="nav-links" id="navLinks">
+      <i class="fas fa-window-close" onclick="hideMenu()"></i>
+      <ul>
+        <li><a href="../index.html">HOME</a></li>
+        <li><a href="../docs.html">DOCS</a></li>
+        <li><a href="ganttcharts.html">SIMULATOR</a></li>
+        <li><a href="system-monitor.html">MONITOR</a></li>
+        <li><a href="../about.html">ABOUT</a></li>
+      </ul>
+    </div>
+    <i class="fas fa-bars" onclick="showMenu()"></i>
+  </nav>
+
+  <div class="monitor-page">
+    <div class="monitor-header">
+      <h1>Real-Time System Monitor</h1>
+      <p>Live CPU and memory from <strong>your computer</strong> — and how the OS manages it</p>
+      <span id="monitorStatus" class="status-badge">Connecting…</span>
+    </div>
+
+    <div id="monitorOffline" class="offline-msg"></div>
+
+    <div class="connection-banner">
+      <span>
+        <strong>Link to theory:</strong> Your OS uses scheduling (like FCFS, RR, Priority) on real processes below.
+        Use the <a href="ganttcharts.html">Simulator</a> to experiment with the same ideas on paper workloads.
+      </span>
+      <a href="ganttcharts.html">Open Simulator →</a>
+    </div>
+
+    <p id="dynamicTip" style="text-align:center;color:#151D3B;font-size:15px;margin-bottom:20px;min-height:48px;">
+      Analyzing system load…
+    </p>
+
+    <div class="monitor-grid">
+      <div class="monitor-card">
+        <h3>CPU usage (overall)</h3>
+        <div class="gauge-wrap">
+          <div class="gauge-ring">
+            <svg width="140" height="140" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="54" fill="none" stroke="#eee" stroke-width="10" />
+              <circle id="cpuGaugeRing" cx="60" cy="60" r="54" fill="none" stroke="#0b9a8d" stroke-width="10"
+                stroke-linecap="round" />
+            </svg>
+            <div class="gauge-value" id="cpuGaugeValue">—<span>CPU</span></div>
+          </div>
+        </div>
+        <p id="systemMeta" style="text-align:center;font-size:12px;color:#888;margin-top:12px;">—</p>
+      </div>
+
+      <div class="monitor-card">
+        <h3>Per-core usage</h3>
+        <div class="core-bars" id="coreBars"></div>
+      </div>
+
+      <div class="monitor-card">
+        <h3>Memory (RAM)</h3>
+        <p id="memPercent" style="font-size:22px;font-weight:700;color:#151D3B;">—</p>
+        <div class="mem-bar-bg">
+          <div class="mem-bar-fill" id="memBarFill"></div>
+        </div>
+        <div class="mem-labels">
+          <span id="memDetail">—</span>
+        </div>
+      </div>
+
+      <div class="monitor-card chart-card">
+        <h3>Usage history (live)</h3>
+        <canvas id="cpuHistoryChart" height="100"></canvas>
+        <p class="refresh-note">Updates every 1.5 seconds</p>
+      </div>
+    </div>
+
+    <div class="monitor-card">
+      <h3>Top processes (what the OS is scheduling now)</h3>
+      <table class="process-table">
+        <thead>
+          <tr>
+            <th>PID</th>
+            <th>Process</th>
+            <th>CPU %</th>
+            <th>Memory %</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="processTableBody">
+          <tr><td colspan="5">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <section class="manage-section">
+      <h2 style="color:#151D3B;text-align:center;">How CPU usage is managed in practice</h2>
+      <div class="manage-grid">
+        <div class="manage-card">
+          <h4>1. OS scheduler (kernel)</h4>
+          <p>Windows/Linux/macOS pick which process runs on each core — like your Simulator’s FCFS, RR, or Priority, but with more rules and preemption.</p>
+        </div>
+        <div class="manage-card">
+          <h4>2. Process priority</h4>
+          <p>Important tasks (system, foreground apps) get higher priority. High CPU from one app can starve others — same idea as Priority scheduling starvation.</p>
+        </div>
+        <div class="manage-card">
+          <h4>3. Multicore &amp; load balance</h4>
+          <p>Work is spread across cores (see per-core bars). Uneven bars mean some cores are busier — the OS tries to balance load.</p>
+        </div>
+        <div class="manage-card">
+          <h4>4. What you can do</h4>
+          <ul class="tips-list">
+            <li>Close unused apps and browser tabs</li>
+            <li>Check Task Manager → sort by CPU</li>
+            <li>Disable heavy startup programs</li>
+            <li>Update drivers / avoid thermal throttling</li>
+            <li>For servers: tune quantum, affinity, cgroups (Linux)</li>
+          </ul>
+        </div>
+        <div class="manage-card">
+          <h4>5. Link to this project</h4>
+          <p>When CPU is saturated, <strong>waiting time</strong> for background jobs grows. Compare algorithms in the Simulator to see how different policies change avg wait and utilization.</p>
+        </div>
+        <div class="manage-card">
+          <h4>6. Memory pressure</h4>
+          <p>When RAM is full, the OS swaps data to disk — CPU looks busy but work slows down. Free memory before blaming the scheduler alone.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="footer"></section>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./js/system-monitor.js"></script>
+  <script>
+    var navLinks = document.getElementById("navLinks");
+    function showMenu() { navLinks.style.right = "0"; }
+    function hideMenu() { navLinks.style.right = "-200px"; }
+  </script>
+</body>
+
+</html>

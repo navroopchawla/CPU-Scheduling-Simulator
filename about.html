@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./about.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <title>About Project — OS Virtual Lab</title>
+</head>
+
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="index.html">OS LAB</a>
+            <div class="nav-links" id="navLinks">
+                <i class="fas fa-window-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="docs.html">DOCS</a></li>
+                    <li><a href="./backend/ganttcharts.html">SIMULATOR</a></li>
+                    <li><a href="./backend/system-monitor.html">MONITOR</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <h1>About the Project</h1>
+    </section>
+
+    <section class="about-block container_docs" data-aos="fade-up">
+        <h2>Project overview</h2>
+        <p>
+            This <strong>CPU Scheduling Simulator</strong> is an Operating Systems virtual laboratory.
+            It helps students and examiners visualize how processes are scheduled under FCFS, SJF, SRTF,
+            Round Robin, and Priority policies — with Gantt charts, performance metrics, and exportable results.
+        </p>
+    </section>
+
+    <section class="about-block container_docs" data-aos="fade-up">
+        <h2>Academic details</h2>
+        <p class="edit-hint">Edit the fields below with your college information before submission.</p>
+        <table class="about-table">
+            <tr><th>Project title</th><td>Interactive CPU Scheduling Algorithm Simulator</td></tr>
+            <tr><th>Student name</th><td>[Your Full Name]</td></tr>
+            <tr><th>Roll number</th><td>[Your Roll Number]</td></tr>
+            <tr><th>Department</th><td>[e.g. Computer Engineering]</td></tr>
+            <tr><th>College</th><td>[Your College Name]</td></tr>
+            <tr><th>Academic year</th><td>[e.g. 2025–2026]</td></tr>
+            <tr><th>Project guide</th><td>[Guide Name, Designation]</td></tr>
+            <tr><th>Team members</th><td>[Member 1], [Member 2] (if applicable)</td></tr>
+        </table>
+    </section>
+
+    <section class="about-block container_docs" data-aos="fade-up">
+        <h2>Objectives</h2>
+        <ul class="about-list">
+            <li>Implement standard CPU scheduling algorithms in a browser-based tool</li>
+            <li>Display Gantt-chart execution timelines for teaching and viva demos</li>
+            <li>Calculate waiting time, turnaround time, and CPU utilization</li>
+            <li>Provide theory documentation and report-ready templates</li>
+        </ul>
+    </section>
+
+    <section class="about-block container_docs" data-aos="fade-up">
+        <h2>Modules</h2>
+        <ul class="about-list">
+            <li><strong>Home</strong> — Introduction and navigation</li>
+            <li><strong>Documentation</strong> — Algorithm theory and advantages/disadvantages</li>
+            <li><strong>Simulator</strong> — Input, Gantt chart, charts, CSV export</li>
+            <li><strong>Report kit</strong> — See <code>docs/PROJECT_REPORT_TEMPLATE.md</code> and <code>docs/VIVA_QUESTIONS.md</code></li>
+        </ul>
+    </section>
+
+    <section class="about-block container_docs" data-aos="fade-up">
+        <h2>Tools & technologies</h2>
+        <p>HTML5, CSS3, JavaScript, jQuery, Bootstrap, Chart.js, MathJax</p>
+    </section>
+
+    <section class="cta" data-aos="zoom-in-up">
+        <h1>Try the simulator<br>for your demo</h1>
+        <a href="./backend/ganttcharts.html" class="hero-btn">Open Simulator</a>
+    </section>
+
+    <section class="footer"></section>
+
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu() { navLinks.style.right = "0"; }
+        function hideMenu() { navLinks.style.right = "-200px"; }
+    </script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>AOS.init({ offset: 80, duration: 700 });</script>
+</body>
+
+</html>

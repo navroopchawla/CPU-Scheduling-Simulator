@@ -1,0 +1,231 @@
+/* Algorithm good/bad rating UI */
+
+.algo-rating-panel {
+  display: none;
+  margin: 20px 0;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid #e8ecf4;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(21, 29, 59, 0.08);
+}
+
+.algo-rating-panel.visible {
+  display: block;
+  animation: slideDown 0.35s ease;
+}
+
+.rating-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.rating-header h4 {
+  margin: 0;
+  color: #151D3B;
+  font-size: 1.1rem;
+}
+
+.rating-header .algo-name {
+  color: rgba(255, 26, 104, 1);
+}
+
+.rating-badge {
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 12px;
+  min-width: 120px;
+}
+
+.rating-score {
+  display: block;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.rating-grade {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.grade-excellent { background: #d4edda; color: #155724; }
+.grade-good { background: #cce5ff; color: #004085; }
+.grade-average { background: #fff3cd; color: #856404; }
+.grade-below { background: #ffe5d0; color: #c45c00; }
+.grade-poor { background: #f8d7da; color: #721c24; }
+
+.rating-bars {
+  display: grid;
+  gap: 10px;
+  max-width: 480px;
+}
+
+.metric-bar-row label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.metric-bar-bg {
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.metric-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.rating-hint {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: #666;
+}
+
+.compare-panel h4 {
+  color: #151D3B;
+}
+
+.verdict-summary {
+  margin-bottom: 16px;
+}
+
+.verdict-box {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.verdict-best {
+  background: #d4edda;
+  border-left: 4px solid #0b9a8d;
+  color: #155724;
+}
+
+.verdict-worst {
+  background: #f8d7da;
+  border-left: 4px solid #ff6361;
+  color: #721c24;
+}
+
+.verdict-box .tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.compare-table .worst-row {
+  background: #fff0f0;
+}
+
+.verdict-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.verdict-tag.good {
+  background: #0b9a8d;
+  color: #fff;
+}
+
+.verdict-tag.bad {
+  background: #ff6361;
+  color: #fff;
+}
+
+.verdict-tag.neutral {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.compare-chart-wrap {
+  margin: 20px 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.compare-algo-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.algo-score-card {
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+}
+
+.algo-score-card.card-best {
+  border: 2px solid #0b9a8d;
+  box-shadow: 0 0 0 2px rgba(11, 154, 141, 0.2);
+}
+
+.algo-score-card.card-worst {
+  border: 2px solid #ff6361;
+  opacity: 0.95;
+}
+
+.algo-score-card h5 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #151D3B;
+}
+
+.card-score {
+  font-size: 28px;
+  font-weight: 800;
+  color: #151D3B;
+}
+
+.card-score small {
+  font-size: 14px;
+  font-weight: 500;
+  color: #888;
+}
+
+.card-grade {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-tips {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 11px;
+  color: #555;
+  line-height: 1.45;
+}
+
+.crown {
+  font-size: 14px;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
